@@ -1,4 +1,5 @@
 "use client";
+import Form from "../form/page";
 import { useState } from "react";
 import classes from "./todo.module.css";
 export default function () {
@@ -25,8 +26,20 @@ export default function () {
 
     // console.log(tasks);
   };
+
+  const addTask = (title) => {
+    console.log("Adding task:", title);
+    const newTask = {
+      id: tasks.length + 1,
+      title,
+      completed: false,
+    };
+    setTasks([...tasks, newTask]);
+  };
+
   return (
     <>
+      <Form onAddTask={addTask} />
       <table>
         <thead>
           <tr className={classes.tableLabels}>
@@ -46,8 +59,8 @@ export default function () {
                 {/* <button onClick={() => DeleteHandler(item.id)}>Delete</button> */}
                 <button
                   data-id={item.id}
-                  data-title={item.title}
-                  data-completed={item.completed}
+                  // data-title={item.title}
+                  // data-completed={item.completed}
                   onClick={DeleteHandler}
                 >
                   Delete
